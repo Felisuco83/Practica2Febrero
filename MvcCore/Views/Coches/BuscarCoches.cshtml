@@ -1,0 +1,68 @@
+﻿@model IEnumerable<MvcCore.Models.Coche>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>BuscarCoches</h1>
+
+<p>
+    <a asp-action="Create">Create New</a> <br />
+</p>
+<h3>Buscar coche por modelo</h3>
+<form asp-controller="Coches" asp-action="Index">
+    <div class="form-group">
+        <label class="control-label">Modelo:</label>
+        <input type="text" name="nombre" class="form-control"/>
+    </div>
+    <button type="submit" class="btn btn-primary"/>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCoche)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Marca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Modelo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Conductor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Imagen)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCoche)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Modelo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Conductor)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Imagen)*@
+                <img src="@item.Imagen" width="150" height="100" />
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { idcoche = item.IdCoche }) |
+                @Html.ActionLink("Details", "Details", new { idcoche = item.IdCoche }) |
+                @Html.ActionLink("Delete", "Delete", new { idcoche = item.IdCoche })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
